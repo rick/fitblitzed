@@ -9,7 +9,7 @@ require "yaml"
 
 # Load the existing yml config
 config = begin
-  Fitgem::Client.symbolize_keys(YAML.load(File.open(".fitgem.yml")))
+  Fitgem::Client.symbolize_keys(YAML.load(File.open("config.yml")))
 rescue ArgumentError => e
   puts "Could not parse YAML: #{e.message}"
   exit
