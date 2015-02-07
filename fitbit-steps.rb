@@ -15,13 +15,13 @@ rescue ArgumentError => e
   exit
 end
 
-client = Fitgem::Client.new(config[:oauth])
+client = Fitgem::Client.new(config[:fitbit])
 
 # With the token and secret, we will try to use them
 # to reconstitute a usable Fitgem::Client
-if config[:oauth][:token] && config[:oauth][:secret]
+if config[:oauth][:token] && config[:fitbit][:secret]
   begin
-    access_token = client.reconnect(config[:oauth][:token], config[:oauth][:secret])
+    access_token = client.reconnect(config[:fitbit][:token], config[:fitbit][:secret])
   rescue Exception => e
     puts "Error: Could not reconnect Fitgem::Client due to invalid keys in .fitgem.yml"
     exit
@@ -50,10 +50,12 @@ else
   user_id = client.user_info['user']['encodedId']
   puts "Current User is: "+user_id
 
-  config[:oauth].merge!(:token => access_token.token, :secret => access_token.secret, :user_id => user_id)
+  config[:fitbit].merge!(:token => access_token.token, :secret => access_token.secret, :user_id => user_id)
+
+# TODO: need to merge in the rest of the configuration here... ?
 
   # Write the whole oauth token set back to the config file
-  File.open(".fitgem.yml", "w") {|f| f.write(config.to_yaml) }
+  File.open("config.yml", "w") {|f| f.write(config.to_yaml) }
 end
 
 # ============================================================
