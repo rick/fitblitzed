@@ -1,4 +1,7 @@
 ---
-:oauth:
-  :consumer_key: YOUR_KEY_HERE
-  :consumer_secret: YOUR_KEY_HERE
+:fitbit:
+  :consumer_key: consumer_key_here
+  :consumer_secret: consumer_secret_here
+:insight_timer:
+  :email: "email@domain.com"
+  :password: "password"
