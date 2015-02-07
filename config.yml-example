@@ -5,3 +5,7 @@
 :insight_timer:
   :email: "email@domain.com"
   :password: "password"
+:untappd:
+  :email: "email@domain.com"
+  :password: "password"
+  :start_date: "2015-01-26"
