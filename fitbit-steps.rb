@@ -68,11 +68,17 @@ def beers_from_steps(steps)
   3
 end
 
-current_date = Date.new(2015,1,26)
+current_date = Date.new(2015,1,20)
+
+total_beers = 0
 
 while current_date <= Date.today
   data = client.activities_on_date current_date
   steps = data["summary"]["steps"]
-  puts "#{current_date.to_s} had #{steps} steps, for #{beers_from_steps(steps)} beers."
+  beers = beers_from_steps(steps)
+  total_beers += beers
+  puts "#{current_date.to_s} had #{steps} steps, for #{beers} beers."
   current_date += 1
 end
+
+puts "Total beers: #{total_beers}"
