@@ -19,7 +19,7 @@ client = Fitgem::Client.new(config[:fitbit])
 
 # With the token and secret, we will try to use them
 # to reconstitute a usable Fitgem::Client
-if config[:oauth][:token] && config[:fitbit][:secret]
+if config[:fitbit][:token] && config[:fitbit][:secret]
   begin
     access_token = client.reconnect(config[:fitbit][:token], config[:fitbit][:secret])
   rescue Exception => e
