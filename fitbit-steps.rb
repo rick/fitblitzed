@@ -68,7 +68,7 @@ def beers_from_steps(steps)
   3
 end
 
-current_date = Date.new(2015,1,20)
+current_date = Date.parse(config[:fitbit][:start_date])
 
 total_beers = 0
 

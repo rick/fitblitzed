@@ -2,10 +2,11 @@
 :fitbit:
   :consumer_key: consumer_key_here
   :consumer_secret: consumer_secret_here
+  :start_date: "2015-01-20"
 :insight_timer:
   :email: "email@domain.com"
   :password: "password"
 :untappd:
   :email: "email@domain.com"
   :password: "password"
-  :start_date: "2015-01-26"
+  :start_date: "2015-01-20"
