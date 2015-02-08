@@ -10,10 +10,11 @@ module FitBlitzed
 
     def initialize
       config = FitBlitzed::Config.new
-      raise ArgumentError, "Configuration required" unless config
-      raise ArgumentError, ":insight_timer configuration required" unless @config = config.service(:insight_timer)
-      raise ArgumentError, ":email configuration value is required" unless @config.email?
-      raise ArgumentError, ":password configuration value is required" unless @config.password?
+
+      raise ArgumentError, "Configuration data is missing." unless config
+      raise ArgumentError, ":insight_timer configuration is required." unless @config = config.service(:insight_timer)
+      raise ArgumentError, ":email configuration value is required for insight_timer." unless @config.email?
+      raise ArgumentError, ":password configuration value is required for insight_timer" unless @config.password?
     end
 
     def email
@@ -25,7 +26,7 @@ module FitBlitzed
     end
 
     def minutes_meditated(target_date)
-      data = fetch_meditation_csv
+      data = fetch
 
       tally = 0
       while day = data.shift
@@ -43,7 +44,7 @@ module FitBlitzed
       tally
     end
 
-    def fetch_meditation_csv
+    def fetch
       csv = nil
 
       if ENV['DEVELOPMENT']
