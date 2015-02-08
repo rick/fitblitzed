@@ -1,6 +1,6 @@
 require "fitgem"
 require "yaml"
-require "fitblitzed/config"
+require "fitblitzed"
 
 module FitBlitzed
   class FitBit

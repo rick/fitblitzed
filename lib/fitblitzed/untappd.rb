@@ -4,7 +4,7 @@
 
 require "mechanize"
 require "json"
-require "fitblitzed/config"
+require "fitblitzed"
 
 module FitBlitzed
   class Untappd

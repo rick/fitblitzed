@@ -1,6 +1,6 @@
 require "mechanize"
 require "csv"
-require "fitblitzed/config"
+require "fitblitzed"
 
 module FitBlitzed
   class InsightTimer
