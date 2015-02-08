@@ -13,7 +13,7 @@ module FitBlitzed
     attr_reader :config
 
     def initialize
-      @config = FitBlitzed::Config.new.service :untappd,
+      @config = FitBlitzed::Config.new :service => :untappd,
         :required => [:username, :password, :start_date]
     end
 

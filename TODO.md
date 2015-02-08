@@ -1,7 +1,6 @@
 ## TODO
 
  - [ ] make fitbit step counts into data
- - [ ] clean up the Config / ConfigService hierarchy (maybe invert it?)
  - [ ] support writing back config file (to support fitbit oauth update functionality)
  - [ ] a wrapper to make it possible to get a "yes/no" + "why/why not" with counts
  - [ ] remove DEVELOPMENT hooks / upgrade to an actual test suite

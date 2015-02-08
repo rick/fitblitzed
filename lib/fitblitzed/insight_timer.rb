@@ -9,7 +9,7 @@ module FitBlitzed
     attr_reader :config
 
     def initialize
-      @config = FitBlitzed::Config.new.service :insight_timer,
+      @config = FitBlitzed::Config.new :service => :insight_timer,
         :required => [:email, :password]
     end
 

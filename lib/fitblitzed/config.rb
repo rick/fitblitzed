@@ -3,21 +3,48 @@ require "bundler/setup"
 require "yaml"
 
 module FitBlitzed
-  class ConfigService
-    attr_reader :config, :handle, :data
+  class ConfigReader
+    attr_reader :data
 
-    def initialize(config, handle, options = {})
-      raise ArgumentError, "Configuration does not include data for required service :#{handle}" unless config.config[handle]
+    def initialize
+      @data = read
+    end
 
-      @data   = config.config[handle]
-      @config = config
-      @handle = handle
+    def read
+      YAML.load(File.open("config.yml"))
+    rescue ArgumentError => e
+      puts "Could not parse YAML: #{e.message}"
+      exit
+    end
+  end
 
-      if options[:required]
-        options[:required].each do |key|
-          unless data.has_key?(key)
-            raise ArgumentError, ":#{key} configuration is required for service :#{handle}."
-          end
+  class Config
+    attr_reader :data, :service, :reader
+
+    def initialize(options = {})
+      @reader = ConfigReader.new
+      raise "No configuration data" unless @data = reader.data
+      handle_options(options)
+    end
+
+    def handle_options(options)
+      # :service => foo limits the configuration data to that service's data
+      return unless options[:service]
+
+      @service = options[:service]
+      if data.has_key?(service)
+        @data = data[service]
+      else
+        raise ArgumentError, "Configuration does not include data for required service :#{service}"
+      end
+
+      # :required => [:a, :b, :c] requires the specified data fields to be
+      # present for the specified service
+      return unless options[:required]
+
+      options[:required].each do |key|
+        unless data.has_key?(key)
+          raise ArgumentError, ":#{key} configuration is required for service :#{service}."
         end
       end
     end
@@ -29,32 +56,6 @@ module FitBlitzed
       else
         # return the value if the key is in the configuration
         data[meth] if data.has_key?(meth)
-      end
-    end
-  end
-
-  class Config
-    attr_reader :config
-
-    def initialize
-      read
-      raise "No configuration data" unless config
-    end
-
-    def service(handle, options = {})
-      FitBlitzed::ConfigService.new(self, handle, options)
-    end
-
-    def config
-      @config ||= read
-    end
-
-    def read
-      @config = begin
-        YAML.load(File.open("config.yml"))
-      rescue ArgumentError => e
-        puts "Could not parse YAML: #{e.message}"
-        exit
       end
     end
   end

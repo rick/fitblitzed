@@ -9,7 +9,7 @@ module FitBlitzed
     attr_reader :config
 
     def initialize
-      @config = FitBlitzed::Config.new.service :fitbit,
+      @config = FitBlitzed::Config.new :service => :fitbit,
         :required => [:consumer_key, :consumer_secret, :start_date]
     end
 
