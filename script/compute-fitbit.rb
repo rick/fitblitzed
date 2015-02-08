@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
+$:.unshift(File.join(File.basename(File.dirname(__FILE__)), "..", "lib"))
 require "rubygems"
 require "bundler/setup"
-$:.unshift("lib")
 require "fitblitzed/fitbit"
 
 fitbit = FitBlitzed::FitBit.new
