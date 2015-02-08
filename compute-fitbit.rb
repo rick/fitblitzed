@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-# see: http://fitbitclient.com/guide/playing-with-the-fitgem-api
-
+require "rubygems"
+require "bundler/setup"
 $:.unshift("lib")
 require "fitblitzed/fitbit"
 

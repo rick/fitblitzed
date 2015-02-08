@@ -1,5 +1,3 @@
-require "rubygems"
-require "bundler/setup"
 require "mechanize"
 require "csv"
 require "fitblitzed/config"

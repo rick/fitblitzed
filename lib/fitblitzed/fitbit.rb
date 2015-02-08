@@ -1,5 +1,3 @@
-require 'rubygems'
-require 'bundler/setup'
 require "fitgem"
 require "yaml"
 require "fitblitzed/config"

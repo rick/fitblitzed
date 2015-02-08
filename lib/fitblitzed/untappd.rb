@@ -2,8 +2,6 @@
 # me an API key.  This is relying on data available only to "supporters"
 # (i.e., untappd paid accounts).
 
-require "rubygems"
-require "bundler/setup"
 require "mechanize"
 require "json"
 require "fitblitzed/config"

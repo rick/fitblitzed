@@ -1,5 +1,3 @@
-require "rubygems"
-require "bundler/setup"
 require "yaml"
 
 module FitBlitzed
