@@ -11,8 +11,13 @@ module FitBlitzed
         @data = read
       end
 
+      def path
+        File.expand_path(File.join(File.dirname(__FILE__),
+          "..", "..", "config", "config.yml"))
+      end
+
       def read
-        YAML.load(File.open("config.yml"))
+        YAML.load(File.open(path))
       rescue ArgumentError => e
         puts "Could not parse YAML: #{e.message}"
         exit

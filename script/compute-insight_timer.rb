@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-$:.unshift(File.join(File.basename(File.dirname(__FILE__)), "..", "lib"))
+$:.unshift(File.join(File.dirname(__FILE__)), "..", "lib")
 require "rubygems"
 require "bundler/setup"
 require "fitblitzed/insight_timer"

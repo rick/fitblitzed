@@ -5,6 +5,7 @@
  - [ ] support writing back config file (to support fitbit oauth update functionality)
  - [ ] caching of past fitbit days (to where?)
  - [ ] a wrapper to make it possible to get a "yes/no" + "why/why not" with counts
+   - [ ] probably requires moving service classes to their own namespace
  - [ ] make configuration per-user (so this can work for multiple users) -> config.user(:foo)
  - [ ] interface
  - [ ] chatops
