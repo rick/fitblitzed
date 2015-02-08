@@ -61,6 +61,7 @@ end
 # ============================================================
 # Add Fitgem API calls on the client object below this line
 
+# TODO: make this data-driven
 def beers_from_steps(steps)
   return 0 if steps < 10000
   return 1 if steps < 17500
@@ -73,6 +74,7 @@ current_date = Date.parse(config[:fitbit][:start_date])
 total_beers = 0
 
 while current_date <= Date.today
+  # TODO: caching
   data = client.activities_on_date current_date
   steps = data["summary"]["steps"]
   beers = beers_from_steps(steps)
