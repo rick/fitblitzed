@@ -14,12 +14,8 @@ module FitBlitzed
 
     def initialize
       config = FitBlitzed::Config.new
-
       raise ArgumentError, "Configuration data is missing." unless config
-      raise ArgumentError, ":untappd configuration is required." unless @config = config.service(:untappd)
-      raise ArgumentError, ":username configuration value is required for untappd." unless @config.username?
-      raise ArgumentError, ":password configuration value is required for untappd." unless @config.password?
-      raise ArgumentError, ":start_date configuration value is required for untappd." unless @config.start_date?
+      @config = config.service(:untappd, :required => [:username, :password, :start_date])
     end
 
     def username

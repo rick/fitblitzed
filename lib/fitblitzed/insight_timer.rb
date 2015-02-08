@@ -10,11 +10,8 @@ module FitBlitzed
 
     def initialize
       config = FitBlitzed::Config.new
-
       raise ArgumentError, "Configuration data is missing." unless config
-      raise ArgumentError, ":insight_timer configuration is required." unless @config = config.service(:insight_timer)
-      raise ArgumentError, ":email configuration value is required for insight_timer." unless @config.email?
-      raise ArgumentError, ":password configuration value is required for insight_timer" unless @config.password?
+      @config = config.service(:insight_timer, :required => [:email, :password])
     end
 
     def email

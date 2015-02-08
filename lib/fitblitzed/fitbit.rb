@@ -10,12 +10,8 @@ module FitBlitzed
 
     def initialize
       config = FitBlitzed::Config.new
-
       raise ArgumentError, "Configuration data is missing." unless config
-      raise ArgumentError, ":fitbit configuration is required." unless @config = config.service(:fitbit)
-      raise ArgumentError, ":consumer_key configuration value is required for fitbit." unless @config.consumer_key?
-      raise ArgumentError, ":consumer_secret configuration value is required for fitbit." unless @config.consumer_secret?
-      raise ArgumentError, ":start_date configuration value is required for fitbit." unless @config.start_date?
+      @config = config.service(:fitbit, :required => [:consumer_key, :consumer_secret, :start_date])
     end
 
     def consumer_key
