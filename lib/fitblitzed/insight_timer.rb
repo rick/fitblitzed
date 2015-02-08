@@ -9,9 +9,8 @@ module FitBlitzed
     attr_reader :config
 
     def initialize
-      config = FitBlitzed::Config.new
-      raise ArgumentError, "Configuration data is missing." unless config
-      @config = config.service(:insight_timer, :required => [:email, :password])
+      @config = FitBlitzed::Config.new.service :insight_timer,
+        :required => [:email, :password]
     end
 
     def email

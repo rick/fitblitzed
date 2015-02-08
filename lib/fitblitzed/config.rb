@@ -36,6 +36,11 @@ module FitBlitzed
   class Config
     attr_reader :config
 
+    def initialize
+      read
+      raise "No configuration data" unless config
+    end
+
     def service(handle, options = {})
       FitBlitzed::ConfigService.new(self, handle, options)
     end
