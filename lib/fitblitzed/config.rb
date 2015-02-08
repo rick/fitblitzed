@@ -3,26 +3,26 @@ require "bundler/setup"
 require "yaml"
 
 module FitBlitzed
-  class ConfigReader
-    attr_reader :data
-
-    def initialize
-      @data = read
-    end
-
-    def read
-      YAML.load(File.open("config.yml"))
-    rescue ArgumentError => e
-      puts "Could not parse YAML: #{e.message}"
-      exit
-    end
-  end
-
   class Config
     attr_reader :data, :service, :reader
 
+    class Reader
+      attr_reader :data
+
+      def initialize
+        @data = read
+      end
+
+      def read
+        YAML.load(File.open("config.yml"))
+      rescue ArgumentError => e
+        puts "Could not parse YAML: #{e.message}"
+        exit
+      end
+    end
+
     def initialize(options = {})
-      @reader = ConfigReader.new
+      @reader = Reader.new
       raise "No configuration data" unless @data = reader.data
       handle_options(options)
     end
