@@ -64,8 +64,8 @@ end
 # TODO: make this data-driven
 def beers_from_steps(steps)
   return 0 if steps < 10000
-  return 1 if steps < 17500
-  return 2 if steps < 22000
+  return 1 if steps < 15000
+  return 2 if steps < 20000
   3
 end
 
