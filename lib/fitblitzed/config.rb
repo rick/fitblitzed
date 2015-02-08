@@ -4,10 +4,11 @@ require "yaml"
 
 module FitBlitzed
   class ConfigService
-    attr_reader :config, :handle
+    attr_reader :config, :handle, :data
 
     def initialize(config, handle)
       raise ArgumentError, "configuration does not include data for service [#{handle}]" unless config.config[handle]
+      @data   = config.config[handle]
       @config = config
       @handle = handle
     end
