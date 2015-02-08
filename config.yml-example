@@ -3,6 +3,10 @@
   :consumer_key: consumer_key_here
   :consumer_secret: consumer_secret_here
   :start_date: "2015-01-20"
+  :steps:
+    10000: 1
+    15000: 2
+    20000: 3
 :insight_timer:
   :email: "email@domain.com"
   :password: "password"

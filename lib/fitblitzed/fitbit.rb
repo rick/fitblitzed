@@ -10,7 +10,7 @@ module FitBlitzed
 
     def initialize
       @config = FitBlitzed::Config.new :service => :fitbit,
-        :required => [:consumer_key, :consumer_secret, :start_date]
+        :required => [:consumer_key, :consumer_secret, :start_date, :steps]
     end
 
     def consumer_key
@@ -19,6 +19,10 @@ module FitBlitzed
 
     def consumer_secret
       config.consumer_secret
+    end
+
+    def scores
+      config.steps
     end
 
     def start_date
@@ -77,10 +81,11 @@ module FitBlitzed
     end
 
     def beers_from_steps(steps)
-      return 0 if steps < 10000
-      return 1 if steps < 15000
-      return 2 if steps < 20000
-      3
+      scores.keys.map(&:to_i).sort.reverse.each do |score|
+        return scores[score] if steps >= score
+      end
+
+      0
     end
   end
 end
